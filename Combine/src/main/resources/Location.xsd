@@ -1,0 +1,24 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.LocationSOAP.com/xml/location"
+targetNamespace="http://www.LocationSOAP.com/xml/location" elementFormDefault="qualified">
+<xs:element name="LocationDetailsRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="locationOpCoType" type="xs:string"/>
+<xs:element name="locationId" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="LocationDetailsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Location" type="tns:Location"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="Location">
+<xs:sequence>
+<xs:element name="doorId" type="xs:int"/>
+<xs:element name="doorType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

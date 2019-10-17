@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.LocationSOAP.com/xml/location"
+	xmlns:tns="http://www.LocationSOAP.com/xml/location" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:sch="http://www.LocationSOAP.com/xml/location" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.LocationSOAP.com/xml/location"
+			elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="LocationDetailsRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="locationOpCoType" type="xs:string" />
+						<xs:element name="locationId" type="xs:int" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LocationDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Location" type="tns:Location" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="Location">
+				<xs:sequence>
+					<xs:element name="doorId" type="xs:int" />
+					<xs:element name="doorType" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="LocationDetailsRequest">
+		<wsdl:part name="LocationDetailsRequest" element="tns:LocationDetailsRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="LocationDetailsResponse">
+		<wsdl:part name="LocationDetailsResponse" element="tns:LocationDetailsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="LocationDetailsPort">
+		<wsdl:operation name="LocationDetails">
+			<wsdl:input name="LocationDetailsRequest" message="tns:LocationDetailsRequest">
+			</wsdl:input>
+			<wsdl:output name="LocationDetailsResponse" message="tns:LocationDetailsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="LocationDetailsPortSoap11" type="tns:LocationDetailsPort">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<wsdl:operation name="LocationDetails">
+			<soap:operation soapAction="" />
+			<wsdl:input name="LocationDetailsRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="LocationDetailsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="LocationDetailsPortService">
+		<wsdl:port name="LocationDetailsPortSoap11" binding="tns:LocationDetailsPortSoap11">
+			<soap:address location="http://localhost:9000/service/location-details" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
